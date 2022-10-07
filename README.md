@@ -25,21 +25,30 @@
 ### Create T3 project
 ~~~bash
 $ npm i -g yarn
+~~~
+~~~bash
 $ npx create-t3-app@6.0.1 t3-todo-app
+~~~
+~~~bash
 $ yarn add zustand @heroicons/react date-fns
 ~~~
 ### DB setup
-~~~
-# add docker-compose.yml file
-# start db
+
+start db
+~~~bash
 $ docker compose up -d
-# reset db
+~~~
+remove db
+~~~bash
 $ docker compose rm -s -f -v
-
-# edit .env + schema.prisma
-
-# prisma migrate and type generation
+~~~
+prisma migrate and type generation
+~~~bash
 $ npx prisma migrate dev
+~~~
+~~~bash
 $ npx prisma generate
+~~~
+~~~bash
 $ npx prisma studio
 ~~~
