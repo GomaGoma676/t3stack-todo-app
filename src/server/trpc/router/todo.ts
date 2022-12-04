@@ -4,10 +4,10 @@ import {
   updateTaskSchema,
   deleteTaskSchema,
 } from "../../../schema/todo";
-import { t, authedProcedure } from "../trpc";
+import { router, publicProcedure, protectedProcedure } from "../trpc";
 
-export const todoRouter = t.router({
-  createTask: authedProcedure
+export const todoRouter = router({
+  createTask: protectedProcedure
     .input(createTaskSchema)
     .mutation(async ({ ctx, input }) => {
       const task = await ctx.prisma.task.create({
@@ -22,7 +22,7 @@ export const todoRouter = t.router({
       });
       return task;
     }),
-  getTasks: t.procedure.query(({ ctx }) => {
+  getTasks: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.task.findMany({
       where: {
         userId: ctx.session?.user?.id,
@@ -32,7 +32,7 @@ export const todoRouter = t.router({
       },
     });
   }),
-  getSingleTask: authedProcedure
+  getSingleTask: protectedProcedure
     .input(getSingleTaskSchema)
     .query(({ ctx, input }) => {
       return ctx.prisma.task.findUnique({
@@ -41,7 +41,7 @@ export const todoRouter = t.router({
         },
       });
     }),
-  updateTask: authedProcedure
+  updateTask: protectedProcedure
     .input(updateTaskSchema)
     .mutation(async ({ ctx, input }) => {
       const task = await ctx.prisma.task.update({
@@ -55,7 +55,7 @@ export const todoRouter = t.router({
       });
       return task;
     }),
-  deleteTask: authedProcedure
+  deleteTask: protectedProcedure
     .input(deleteTaskSchema)
     .mutation(async ({ ctx, input }) => {
       await ctx.prisma.task.delete({

@@ -27,7 +27,7 @@
 $ npm i -g yarn
 ~~~
 ~~~bash
-$ npx create-t3-app@6.0.1 t3-todo-app
+$ npx create-t3-app@6.11.0 t3-todo-app
 ~~~
 ~~~bash
 $ yarn add zustand @heroicons/react date-fns

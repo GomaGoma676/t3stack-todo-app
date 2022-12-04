@@ -1,13 +1,13 @@
-import { trpc } from '../utils/trpc'
-import { TaskItem } from './TaskItem'
+import { trpc } from "../utils/trpc";
+import { TaskItem } from "./TaskItem";
 
 export const TaskList = () => {
-  const { data, isLoading, error } = trpc.todo.getTasks.useQuery()
+  const { data, isLoading, error } = trpc.todo.getTasks.useQuery();
   if (isLoading) {
-    return <p>Loading task list...</p>
+    return <p>Loading task list...</p>;
   }
   if (error) {
-    return <p>{error.message}</p>
+    return <p>{error.message}</p>;
   }
   return (
     <ul>
@@ -20,5 +20,5 @@ export const TaskList = () => {
         />
       ))}
     </ul>
-  )
-}
+  );
+};
